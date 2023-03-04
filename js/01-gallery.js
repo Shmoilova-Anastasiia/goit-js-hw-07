@@ -31,10 +31,14 @@ galleryEl.addEventListener('click', event => {
       return
     }
     
-    const modal = basicLightbox.create(`<img width="1400" height="900" src="${event.target.dataset.source}">`).show();
-   
+    const modal = basicLightbox.create(`<img width="1400" height="900" src="${event.target.dataset.source}">`);
+    modal.show()
+    galleryEl.addEventListener('keydown', (event) => {
+      if (event.code === "Escape") {
+        modal.close();
+      }
+    });
   })
 
   
 
-console.log(galleryEl)
