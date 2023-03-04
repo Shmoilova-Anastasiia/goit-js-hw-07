@@ -7,22 +7,25 @@ const galleryEl = document.querySelector('.gallery');
 
 
 const makeGallery = galleryItems.map((element) =>{
-    const imageEl = document.createElement('img');
-    imageEl.classList.add('gallery__image');
-    imageEl.setAttribute('src', element.preview);
-    imageEl.setAttribute('data-source', element.original);
-    imageEl.setAttribute('alt', element.description);
-    const itemGallery = document.createElement('div');
-    itemGallery.classList.add('.gallery__item');
-    const linkGallery = document.createElement('a');
-    linkGallery.classList.add('gallery__link');
-    linkGallery.setAttribute('href', element.original)
-    linkGallery.appendChild(imageEl);
-    itemGallery.appendChild(linkGallery);
-    galleryEl.appendChild( itemGallery); 
-    return galleryEl
-  })
+
+const itemGalleryEl = `<div class="gallery__item">
+  <a class="gallery__link" href="${element.original}">
+    <img
+      class="gallery__image"
+      src="${element.preview}"
+      data-source="${element.original}"
+      alt="${element.description}"
+    />
+  </a>
+</div>`
+return itemGalleryEl
+}).join('')
+
+
     
+  
+
+    galleryEl.innerHTML = makeGallery;
   
 
 galleryEl.addEventListener('click', event => {
